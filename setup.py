@@ -9,7 +9,7 @@ setup(
   author = 'Martin Beneš',
   author_email = 'martinbenes1996@gmail.com',
   url = 'https://github.com/martinbenes1996/slovakrailways',   # Provide either the link to your github or to your website
-  download_url = 'https://github.com/martinbenes1996/slovakrailways/archive/v0.0.1.tar.gz',    # I explain this later on
+  download_url = 'https://github.com/martinbenes1996/slovakrailways/archive/v0.0.2.tar.gz',    # I explain this later on
   keywords = ['API', 'Railway', 'Train', 'Slovakia', 'Data', 'REST API'],
   install_requires=[],
   package_dir={'': '.'},
