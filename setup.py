@@ -1,4 +1,10 @@
 
+try:
+    import pypandoc
+    long_description = pypandoc.convert('README.md', 'rst')
+except(IOError, ImportError):
+    long_description = open('README.md').read()
+
 from distutils.core import setup
 setup(
   name = 'slovakrailways',
@@ -6,10 +12,11 @@ setup(
   version = '0.0.2',
   license='MIT',
   description = 'Python envelope of Slovak Railways API',
+  long_description = long_description,
   author = 'Martin Beneš',
   author_email = 'martinbenes1996@gmail.com',
-  url = 'https://github.com/martinbenes1996/slovakrailways',   # Provide either the link to your github or to your website
-  download_url = 'https://github.com/martinbenes1996/slovakrailways/archive/v0.0.2.tar.gz',    # I explain this later on
+  url = 'https://github.com/martinbenes1996/slovakrailways',
+  download_url = 'https://github.com/martinbenes1996/slovakrailways/archive/v0.0.2.tar.gz',
   keywords = ['API', 'Railway', 'Train', 'Slovakia', 'Data', 'REST API'],
   install_requires=[],
   package_dir={'': '.'},
