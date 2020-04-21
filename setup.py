@@ -1,8 +1,9 @@
+
 from distutils.core import setup
 setup(
   name = 'slovakrailways',
   packages = ['.'],
-  version = '0.0.1',
+  version = '0.0.2',
   license='MIT',
   description = 'Python envelope of Slovak Railways API',
   author = 'Martin Beneš',
