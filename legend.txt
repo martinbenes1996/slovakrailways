@@ -1,0 +1,14 @@
+[{'selfRef': 369}, {'selfRef': -1674682520}, {'selfRef': 134}, {'selfRef': 3}, {'selfRef': 87245}, {'selfRef': 525482}, {'selfRef': 525557}]
+[{'selfRef': 369}, {'selfRef': -1674682520}, {'selfRef': 134}, {'selfRef': 3}, {'selfRef': 87245}, {'selfRef': 525482}, {'selfRef': 525557}]
+[{'selfRef': 369}, {'selfRef': -1674574520}, {'selfRef': 134}, {'selfRef': 3}, {'selfRef': 246107}, {'selfRef': 525844}, {'selfRef': 529234}]
+[{'selfRef': 369}, {'selfRef': -1673718520}, {'selfRef': 134}, {'selfRef': 3}, {'selfRef': 246589}, {'selfRef': 525863}, {'selfRef': 529249}]
+[{'selfRef': 369}, {'selfRef': -1673810520}, {'selfRef': 134}, {'selfRef': 3}, {'selfRef': 246589}, {'selfRef': 525863}, {'selfRef': 529249}]
+[{'selfRef': 369}, {'selfRef': -1673718520}, {'selfRef': 134}, {'selfRef': 3}, {'selfRef': 246589}, {'selfRef': 525863}, {'selfRef': 529249}]
+
+1 - ?
+2 - ? (tariff [somehow] and time - maybe type of train)
+3 - ?
+4 - ?
+5 - ? (time)
+6 - information for next connection
+7 - information for previous connection
