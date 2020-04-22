@@ -56,6 +56,9 @@ def pricing_from_route():
     #p = slovakrailways.pricing([369,-1678484520,134,3,88015,525931,525572])
     print(p)
     
-pricing_from_route()
+#pricing_from_route()
+bratislava_stations = slovakrailways.stations('Bratislava')
+for station in bratislava_stations:
+    print(station)
 
 #print(slovakrailways.meta.age_categories())

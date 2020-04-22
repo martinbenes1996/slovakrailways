@@ -1,22 +1,20 @@
 
-try:
-    import pypandoc
-    long_description = pypandoc.convert('README.md', 'rst')
-except(IOError, ImportError):
-    long_description = open('README.md').read()
+import setuptools
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
-from distutils.core import setup
-setup(
+setuptools.setup(
   name = 'slovakrailways',
-  packages = ['.'],
-  version = '0.0.2',
-  license='MIT',
-  description = 'Python envelope of Slovak Railways API',
-  long_description = long_description,
+  version = '0.0.3',
   author = 'Martin Beneš',
   author_email = 'martinbenes1996@gmail.com',
+  description = 'Python envelope of Slovak Railways API',
+  long_description = long_description,
+  long_description_content_type="text/markdown",
+  packages=setuptools.find_packages(),
+  license='MIT',
   url = 'https://github.com/martinbenes1996/slovakrailways',
-  download_url = 'https://github.com/martinbenes1996/slovakrailways/archive/v0.0.2.tar.gz',
+  download_url = 'https://github.com/martinbenes1996/slovakrailways/archive/v0.0.3.tar.gz',
   keywords = ['API', 'Railway', 'Train', 'Slovakia', 'Data', 'REST API'],
   install_requires=[],
   package_dir={'': '.'},
