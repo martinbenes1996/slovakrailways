@@ -1,6 +1,7 @@
 
+import codecs
 import setuptools
-with open("README.md", "r") as fh:
+with codecs.open("README.md", "r", encoding="UTF-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
