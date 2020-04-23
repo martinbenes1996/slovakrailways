@@ -1,4 +1,5 @@
 # slovakrailways
+
 Python envelope of Slovak Railways API
 
 ## Installation
@@ -25,8 +26,7 @@ Get information of station with function `zsr.station()`, taking the prefix of t
 The prefix to match is *case-* and *diacritic- insensitive*.
 
 ```python
-# get stations with "zilina" prefix
-result = zsr.stations('zilina')
+result = zsr.stations('zilina') # get stations with "zilina" prefix
 ```
 
 Result has following structure.
@@ -56,7 +56,7 @@ Result has following structure.
 ```
 
 Identifier *uicCode* from Slovak Railways system is used for unique identification,
-in the package it is references as *station_id*.
+in the package it is references as *uic_code*.
 
 ```python
 rimavsk_stations = zsr.stations('rimavsk')
@@ -83,23 +83,7 @@ rimavsk_stations = zsr.stations('rimavsk')
         "latitude": 48.38123,
         "longitude": 20.019545
     },{
-        "uicCode": "5615283",
-        "name": "Rimavské Brezovo",
-        "image": None,
-        "latitude": 48.539582,
-        "longitude": 19.962968
-    },{
-        "uicCode": "5615043",
-        "name": "Rimavské Janovce",
-        "image": None,
-        "latitude": 48.341307,
-        "longitude": 20.06288
-    },{
-        "uicCode": "5615093",
-        "name": "Rimavské Janovce obec",
-        "image": None,
-        "latitude": 48.341522,
-        "longitude": 20.062622
+        # ...
     },{
         "uicCode": "5615303", 
         "name": "Rimavské Zalužany",
@@ -112,16 +96,16 @@ rimavsk_stations = zsr.stations('rimavsk')
 
 ### Get departures from station
 
-Station is identified by the *station_id* (= *uicCode*).
+Station is identified by the *uicCode*.
 List the departures from a station with `zsr.departures()`,
-which takes the station_id as first parameter
+which takes the uic_code as first parameter
 
 ```python
-# get station_id of Rimavska Sobota station
-station_id = zsr.stations('rimavska sobota')[0]['uicCode']
-print(station_id) # "5615033"
+# get uic_code of Rimavska Sobota station
+uic_code = zsr.stations('rimavska sobota')[0]['uicCode']
+print(uic_code) # "5615033"
 # get current departures
-departures = zsr.departures(station_id)
+departures = zsr.departures(uic_code)
 ```
 
 The *departures* has following structure
@@ -194,7 +178,7 @@ Specify time of departure (or arrival)
 import datetime
 dt = datetime.datetime.now() + datetime.timedelta(hours = 3)
 # get trains arriving till 3h from now
-rimavska_sobota_arrivals = slovakrailways.departures(station_id, dt, departures=False)
+rimavska_sobota_arrivals = slovakrailways.departures(uic_code, dt, departures=False)
 ```
 
 ```python
@@ -254,7 +238,6 @@ assert zsr.meta.status()
 ```
 
 List avaliable discounts for various age categories with *zsr.meta.age_categories()*.
-
 
 ```python
 age_categories = zsr.meta.age_categories()
