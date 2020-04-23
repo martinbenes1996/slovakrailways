@@ -14,7 +14,7 @@ setuptools.setup(
   packages=setuptools.find_packages(),
   license='MIT',
   url = 'https://github.com/martinbenes1996/slovakrailways',
-  download_url = 'https://github.com/martinbenes1996/slovakrailways/archive/v0.0.3.tar.gz',
+  download_url = 'https://github.com/martinbenes1996/slovakrailways/archive/v0.0.4.tar.gz',
   keywords = ['API', 'Railway', 'Train', 'Slovakia', 'Data', 'REST API'],
   install_requires=[],
   package_dir={'': '.'},
