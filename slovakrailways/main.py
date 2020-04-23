@@ -12,9 +12,10 @@ Todo:
 import datetime
 import json
 import logging
+import sys
 from urllib.error import HTTPError,URLError
 # local imports
-import common
+from . import common
 
 # logging
 logger = logging.getLogger(__name__)
@@ -47,22 +48,22 @@ def stations(station_prefix, limit=10):
     # OK
     return response
 
-def departures(station_id, dt=None, departure=True):
+def departures(uic_code, dt=None, departure=True):
     """Lists departures or arrivals from station.
     
-    The station is given by *station_id*, number in string format, text for big stations (e.g. "BRATISLAVA").
+    The station is given by *uic_code*, number in string format, text for big stations (e.g. "BRATISLAVA").
     The list contains items arriving/departing earliest at datetime *dt*.
     
     Args:
-        station_id (str): identifier of station, number or text.
+        uic_code (str): identifier of station, number or text.
         dt (datetime, optional): initial datetime of list, defaultly now()
         departure (bool, optional): list departures (True) or arrivals (False), defaultly True
     Returns:
         list: list of departing/arriving trains
     """
     # parse parameters
-    if not station_id: return {}
-    station_prefix = common._urlencode(station_id)
+    if not uic_code: return {}
+    station_prefix = common._urlencode(uic_code)
     dt = common._parse_date(dt) # UNIX timestamp [ms]
     departure = 'true' if departure else 'false'
     
@@ -116,13 +117,13 @@ def delay(train_number, dt=None):
 def route(start, end, dt=None, departure=True, age_category=103, discount=1):
     """Lists connections for route between two points.
     
-    Lists connections between start and end, given by station_ids.
+    Lists connections between start and end, given by uic_codes.
     The connections depart from start earliest at datetime dt.
     You can specify age category and discounts, for available ones call *slovakrailways.meta.age_categories()*.
     
     Args:
-        start (str): station_id of start station
-        end (str): station_id of end station
+        start (str): uic_code of start station
+        end (str): uic_code of end station
         dt (str, optional): time of departure/arrival, default is now()
         age_category (int, optional): age category of passenger
         discount (int,optional): age category discount

@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
   name = 'slovakrailways',
-  version = '0.0.3',
+  version = '0.0.4',
   author = 'Martin Beneš',
   author_email = 'martinbenes1996@gmail.com',
   description = 'Python envelope of Slovak Railways API',

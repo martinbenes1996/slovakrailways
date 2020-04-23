@@ -10,8 +10,5 @@ Todo:
     * caching
 """
 
-import sys
-sys.path.append('slovakrailways')
-
-from main import *
-from meta import *
+from .main import *
+from . import meta

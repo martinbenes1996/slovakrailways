@@ -6,7 +6,7 @@ sys.path.append('.')
 
 logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.DEBUG)
 
-import __init__ as slovakrailways
+import slovakrailways
 
 # information of Zilina stations
 def station_information():
@@ -57,8 +57,9 @@ def pricing_from_route():
     print(p)
     
 #pricing_from_route()
-bratislava_stations = slovakrailways.stations('Bratislava')
-for station in bratislava_stations:
-    print(station)
+#bratislava_stations = slovakrailways.stations('Bratislava')
+#for station in bratislava_stations:
+#    print(station)
 
+departures_from_station()
 #print(slovakrailways.meta.age_categories())

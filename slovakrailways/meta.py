@@ -1,7 +1,7 @@
 
 from urllib.error import HTTPError,URLError
 
-import common
+from . import common
 
 # logging
 import logging
