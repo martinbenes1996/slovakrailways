@@ -10,9 +10,18 @@ Station = None
 class Connection:
     station_cache = {}
     @classmethod
-    def departures(cls, start, *args, **kwargs):
-        if "uic_code" not in kwargs and len(args) == 0:
+    def departures(cls, start = None, *args, **kwargs):
+        if start is None:
+            if "uic_code" not in kwargs and len(args) == 0:
+                raise RuntimeError
+            else:
+                if "uic_code" in kwargs:
+                    start = Station(kwargs["uic_code"])
+                else:
+                    start = Station(args[0])
+        else:
             kwargs['uic_code'] = start.uic()
+            
         deps = main.departures(*args, **kwargs)
         d = {}
         for dep in deps:

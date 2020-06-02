@@ -1,4 +1,6 @@
 
+import warnings
+
 from . import cache
 from . import main
 from . import meta
@@ -35,7 +37,7 @@ class Station:
         return stationList
                 
     def __init__(self, uicCode, **kwargs):
-        self._uic = uicCode
+        self._uic = str(uicCode)
         self._name = self.uic_to_name(self._uic)
         self._lazy = "lazy" not in kwargs or kwargs["lazy"]
         if self._lazy:
@@ -58,6 +60,8 @@ class Station:
         if self._name is None:
             self._fetch_station()
         return self._name
+    def key(self):
+        return meta.to_key(self.name())
     def coordinates(self):
         if self._latitude is None or self._longitude is None:
             self._fetch_station()
@@ -68,6 +72,9 @@ class Station:
         #print(deps)
     def _fetch_station(self):
         prefix = self.uic_to_name(self._uic)
+        if prefix is None:
+            warnings.warn("unknown UIC")
+            return
         stations = main.stations(prefix)
         for s in stations:
             if s['uicCode'] == self._uic:
