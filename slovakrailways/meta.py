@@ -7,6 +7,34 @@ from . import common
 import logging
 logger = logging.getLogger(__name__)
 
+_decoder = {
+    "Á": "A", "á": "a", "Ä": "A", "ä": "a",
+    "Č": "C", "č": "c",
+    "Ď": "D", "ď": "d",
+    "É": "E", "é": "e",
+    "Í": "I", "í": "i",
+    "Ĺ": "L", "ĺ": "l", "Ľ": "L", "ľ": "l",
+    "Ň": "N", "ň": "n",
+    "Ó": "O", "ó": "o", "Ô": "O", "ô": "o",
+    "Ŕ": "R", "ŕ": "r",
+    "Š": "S", "š": "s",
+    "Ť": "T", "ť": "t",
+    "Ú": "U", "ú": "u",
+    "Ý": "Y", "ý": "y",
+    "Ž": "Z", "ž": "z"
+}
+def to_key(s):
+    letters = [letter for letter in s]
+    result = ""
+    for letter in letters:
+        try:
+            result += _decoder[letter].upper()
+        except:
+            result += letter.upper()
+    return result
+
+
+
 def status():
     try:
         response = common._get_slovakrail('/api/supported-version/1')
@@ -50,4 +78,4 @@ def place_attributes():
     attributes = response['placeAttributes']
     return attributes
 
-__all__ = ["status","description","age_categories","train_types","place_attributes"]
+__all__ = ["to_key", "status","description","age_categories","train_types","place_attributes"]
