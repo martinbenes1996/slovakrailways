@@ -1,7 +1,7 @@
 
 from datetime import datetime
 
-from . import main
+from . import _slovakrailways as zsr
 from . import meta
 
 # dependency injection design
@@ -22,7 +22,7 @@ class Connection:
         else:
             kwargs['uic_code'] = start.uic()
             
-        deps = main.departures(*args, **kwargs)
+        deps = zsr.departures(*args, **kwargs)
         d = {}
         for dep in deps:
             if dep['station'] not in cls.station_cache:
@@ -60,7 +60,7 @@ class Connection:
                 stops.append(trainStop)
         return stops
     def _fetch_route(self):
-        routes = main.route(self._start.uic(), self._end.uic(), self._dt)
+        routes = zsr.route(self._start.uic(), self._end.uic(), self._dt)
         for rt in routes:
             # parse route stops
             rt_dt = datetime.utcfromtimestamp( int(rt['departureTimestamp'])/1000 )

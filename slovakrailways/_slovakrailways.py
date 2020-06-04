@@ -16,6 +16,7 @@ import sys
 from urllib.error import HTTPError,URLError
 # local imports
 from . import common
+from . import meta
 
 # logging
 logger = logging.getLogger(__name__)

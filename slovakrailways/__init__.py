@@ -12,5 +12,4 @@ Todo:
 
 from .station import *
 from .connection import *
-from .main import *
-from . import meta
+from ._slovakrailways import *

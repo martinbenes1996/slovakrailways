@@ -20,6 +20,28 @@ And you're good to go. Btw ZSR is an abbreviation of Slovak railways.
 
 ## Usage
 
+Library contains two different interfaces - basic functional interface and OOP interface.
+
+OOP interface is accessed under `zsr` identifier using
+
+```python
+import slovakrailways as zsr
+```
+
+Basic functional interface is accessed under `zsr` identifier using
+
+```python
+import slovakrailways._slovakrailways as zsr
+```
+
+### Basic interface
+
+
+
+### OOP interface
+
+
+
 ### Get station information
 
 Get information of station with function `zsr.station()`, taking the prefix of the name.

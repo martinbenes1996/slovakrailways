@@ -1,7 +1,7 @@
 
 import json
 
-from . import main
+from . import _slovakrailways as zsr
 
 def cache_uic(filename = "uic.json"):
     try:
@@ -14,7 +14,7 @@ def cache_uic(filename = "uic.json"):
             for c2 in range(ord('a'),ord('z') + 1):
                 prefix = f"{chr(c1)}{chr(c2)}"
                 print(prefix)
-                x = main.stations(prefix, limit = 100)
+                x = zsr.stations(prefix, limit = 100)
                 for s in x:
                     mapping = {s['uicCode']: s['name']}
                     try:

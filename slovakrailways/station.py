@@ -2,7 +2,7 @@
 import warnings
 
 from . import cache
-from . import main
+from . import _slovakrailways as zsr
 from . import meta
 from . import connection
 from .connection import Connection
@@ -19,7 +19,7 @@ class Station:
             return None
     @classmethod
     def get(cls, prefix, exact = False):
-        stations = main.stations(prefix)
+        stations = zsr.stations(prefix)
         stationList = []
         if exact:
             for s in stations:
@@ -75,7 +75,7 @@ class Station:
         if prefix is None:
             warnings.warn("unknown UIC")
             return
-        stations = main.stations(prefix)
+        stations = zsr.stations(prefix)
         for s in stations:
             if s['uicCode'] == self._uic:
                 if self._name is None:
