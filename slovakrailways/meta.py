@@ -45,8 +45,11 @@ def status():
         return False
     else:
         return response
-    
+
+_description = None
 def description():
+    global _description
+    if _description: return _description
     try:
         response = common._get_slovakrail('/api/v1/init')
     except (HTTPError,URLError) as e: # error
@@ -55,6 +58,7 @@ def description():
         logger.debug(e.info())
         return {}
     else:
+        _description = response
         return response
 def age_categories():
     response = description()

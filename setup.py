@@ -18,6 +18,7 @@ setuptools.setup(
   keywords = ['API', 'Railway', 'Train', 'Slovakia', 'Data', 'REST API'],
   install_requires=[],
   package_dir={'': '.'},
+  package_data={'': ['data/*.json','data/*.csv']},
   classifiers=[
     'Development Status :: 3 - Alpha',
     'Intended Audience :: Developers',

@@ -49,4 +49,12 @@ def _multiname_urlparam(key, values):
         q += key + "=" + urllib.parse.quote_plus(str(v)) + "&"
     return q[:-1] # remove last "&"
 
+def _construct_refs():
+    search_dt = datetime(2020,6,30)
+    departure_dt = datetime(2020,6,30)
+    next_connection = 432307
+    previous_connection = 432009
+    ref1 = (search_dt - datetime(2020,6,29,14,15)) // timedelta(days = 49, hours = 17, minutes = 3) + 371
+    ref3 = (departure_dt - datetime(2019,12,9)).days
+
 __all__ = ["_get_slovakrail","_parse_date","_urlencode","_multiname_urlparam"]

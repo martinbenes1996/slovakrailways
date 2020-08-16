@@ -5,9 +5,9 @@
 [{'selfRef': 369}, {'selfRef': -1673810520}, {'selfRef': 134}, {'selfRef': 3}, {'selfRef': 246589}, {'selfRef': 525863}, {'selfRef': 529249}]
 [{'selfRef': 369}, {'selfRef': -1673718520}, {'selfRef': 134}, {'selfRef': 3}, {'selfRef': 246589}, {'selfRef': 525863}, {'selfRef': 529249}]
 
-1 - ?
+1 - 49 day cycle
 2 - ? (tariff [somehow] and time - maybe type of train)
-3 - ?
+3 - day offset from [some day]
 4 - ?
 5 - ? (time)
 6 - information for next connection

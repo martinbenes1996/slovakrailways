@@ -1,31 +1,29 @@
 
-import json
+import csv
+import pkg_resources
 
-from . import _slovakrailways as zsr
+class Cache:
+    _cache_location = pkg_resources.resource_filename(__name__, "data/uic.csv")
+    _cache_data = None
+    _cache = None
+    def __init__(self):
+        with open(self._cache_location, encoding = "utf-8") as fd:
+            data = csv.reader(fd)
+            self._cache_data = {uic:name for uic,name in data}
+    def __getitem__(self, key):
+        return self._cache_data[key]
+    @classmethod
+    def get(cls):
+        if not cls._cache:
+            cls._cache = cls()
+        return cls._cache
+    @classmethod
+    def lookup(cls, uic):
+        return cls.get()[str(uic)]
+    
+def lookup(uic):
+    return Cache.lookup(uic)
 
-def cache_uic(filename = "uic.json"):
-    try:
-        fp = open(filename)
-        d = json.load(fp)
-    except:
-        # collect by prefix
-        d = {}
-        for c1 in range(ord('a'),ord('z') + 1):
-            for c2 in range(ord('a'),ord('z') + 1):
-                prefix = f"{chr(c1)}{chr(c2)}"
-                print(prefix)
-                x = zsr.stations(prefix, limit = 100)
-                for s in x:
-                    mapping = {s['uicCode']: s['name']}
-                    try:
-                        d = {**d, **mapping}
-                    except:
-                        pass
-        # write to file
-        with open(filename, "w") as fp:
-            json.dump(d, fp)
-    else: 
-        fp.close()
-    return d
+__all__ = ["lookup"]
                     
             
