@@ -1,11 +1,18 @@
 
+# requirements
+try:
+  with open('requirements.txt') as f:
+    reqs = f.read().splitlines()
+except:
+  reqs = []
+
 import setuptools
 with open("README.md", "r", encoding="UTF-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
   name = 'slovakrailways',
-  version = '0.0.5',
+  version = '0.1.0',
   author = 'Martin Beneš',
   author_email = 'martinbenes1996@gmail.com',
   description = 'Python envelope of Slovak Railways API',
@@ -14,9 +21,9 @@ setuptools.setup(
   packages=setuptools.find_packages(),
   license='MIT',
   url = 'https://github.com/martinbenes1996/slovakrailways',
-  download_url = 'https://github.com/martinbenes1996/slovakrailways/archive/v0.0.5.tar.gz',
+  download_url = 'https://github.com/martinbenes1996/slovakrailways/archive/v0.1.0.tar.gz',
   keywords = ['API', 'Railway', 'Train', 'Slovakia', 'Data', 'REST API'],
-  install_requires=[],
+  install_requires=reqs,
   package_dir={'': '.'},
   package_data={'': ['data/*.json','data/*.csv']},
   classifiers=[
