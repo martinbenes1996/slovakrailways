@@ -23,7 +23,6 @@ class TestTrain(unittest.TestCase):
     @delay_test(timeout = 1)
     def test_track_train(self):
         x = zsr.track_train("609")
-        print(x)
         
         
 

@@ -22,13 +22,13 @@ class TestRoute(unittest.TestCase):
         
     @delay_test(timeout = 1)
     def test_route(self):
-        x = zsr.route("609")
-        print(x)
+        x = zsr.route("5613206","5613600")
+        #TODO
         
     @delay_test(timeout = 1)
     def test_pricing(self):
         x = zsr.pricing("609")
-        print(x)
+        #TODO
         
         
 
