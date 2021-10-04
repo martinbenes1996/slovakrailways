@@ -20,170 +20,69 @@ And you're good to go. Btw ZSR is an abbreviation of Slovak railways.
 
 ## Usage
 
-### Lookup station
-
-Lookup stations by prefix with `search_stations()`.
-The prefix to match is *case-* and *diacritic- insensitive*.
+## Check connection
 
 ```python
-result = zsr.search_stations('zilina') # get stations with "zilina" prefix
+zsr.api_status()
 ```
 
-Result has following structure.
+## Lookup station
+
+Lookup stations by prefix with `search_stations()`, for cached stations, the prefix is used as substring. The prefix to match is *case-* and *diacritic- insensitive*.
 
 ```python
-[
-    {
-        "uicCode": "5617915",
-        "name": "Žilina",
-        "image": None,
-        "latitude": 49.21945,
-        "longitude": 18.7408
-    },{
-        "uicCode": "5617930",
-        "name": "Žilina-Solinky",
-        "image": None,
-        "latitude": 49.198517,
-        "longitude": 18.736596
-    },{
-        "uicCode": "5617925",
-        "name": "Žilina-Záriečie",
-        "image": None,
-        "latitude": 49.218306,
-        "longitude": 18.730756
-    }
-]
+zsr.search_station('rimavsk') # get stations with "rimavsk" prefix
 ```
 
-Another example
+Result is a Pandas dataframe with matched records.
+
+```
+   uicCode                   name image   latitude  longitude                    key domestic
+0  5615293          Rimavská Baňa  None  48.511147  19.941259          RIMAVSKA BANA     True
+1  5615213          Rimavská Píla  None  48.650532  19.944147          RIMAVSKA PILA     True
+2  5615033        Rimavská Sobota  None  48.381230  20.019545        RIMAVSKA SOBOTA     True
+3  5615283       Rimavské Brezovo  None  48.539582  19.962968       RIMAVSKE BREZOVO     True
+4  5615043       Rimavské Janovce  None  48.341307  20.062880       RIMAVSKE JANOVCE     True
+5  5615093  Rimavské Janovce obec  None  48.341522  20.062622  RIMAVSKE JANOVCE OBEC     True
+6  5615303      Rimavské Zalužany  None  48.500525  19.935475      RIMAVSKE ZALUZANY     True
+```
+
+ZSR identifies stations with `uicCode`. Station can be looked up using this identifier with a following call.
 
 ```python
-rimavsk_stations = zsr.search_stations('rimavsk')
+zsr.get_station("5613041") # Ruzomberok
 ```
+
+Since `uicCode` is unique identifier, the result is either a single station or an error is raised.
+
+```
+   uicCode        name image   latitude  longitude         key  domestic
+0  5613041  Ružomberok  None  49.075239    19.3066  RUZOMBEROK      True
+```
+
+### Cache stations
+
+API allows querying of stations with a prefix, always returning 100 best results.
+Library contains recursive prefix depth-search and indexing of the results.
+Run the station caching with
 
 ```python
-[
-    {
-        "uicCode": "5615293",
-        "name": "Rimavská Baňa",
-        "image": None,
-        "latitude": 48.511147,
-        "longitude": 19.941259
-    },{
-        "uicCode": "5615213",
-        "name": "Rimavská Píla",
-        "image": None,
-        "latitude": 48.650532,
-        "longitude": 19.944147
-    },{
-        "uicCode": "5615033",
-        "name": "Rimavská Sobota",
-        "image": None,
-        "latitude": 48.38123,
-        "longitude": 20.019545
-    },{
-        # ...
-    },{
-        "uicCode": "5615303", 
-        "name": "Rimavské Zalužany",
-        "image": None,
-        "latitude": 48.500525,
-        "longitude": 19.935475
-    }
-]
+zsr.cache_stations()
 ```
 
-Identifier `uicCode` from Slovak Railways system is used for unique identification of stations.
-
-Station can be looked up with `uicCode`
-
-```python
-x = zsr.station("5613206")
-```
-
-Since `uicCode` is unique identifier, the result is either single station or an error is raised.
-The result for previous call is
-
-```python
-{
-    'uicCode': '5613206',
-    'name': 'Bratislava hl.st.',
-    'image': None,
-    'latitude': 48.157653,
-    'longitude': 17.106339
-}
-```
-
-### Departures from stations
+## Departures from stations
+*In progress.*
 
 List the departures from a station with `zsr.departures()`.
 The station is specified by `uicCode`.
 
 ```python
-departures = zsr.departures("5615033") # Rimavská Sobota
+zsr.departures("5615033") # Rimavska Sobota
 ```
 
-The *departures* has following structure
+Function returns dataframe of following structure
 
-```python
-[
-    {
-        "isDeparture": True,
-        "station": "Fiľakovo",
-        "timestamp": 1587662220000,
-        "train": {
-            "type": 1,
-            'typeList': [1],
-            'number': '6258',
-            'name': '',
-            'features': [
-                { 
-                    'id': 5, # second class
-                    'featureDescription': 'Druhá trieda',
-                    'featureName': 'Druhá trieda',
-                    'order': 0,
-                    'reservationType': -1,
-                    'reservationName': None,
-                    'startStationIndex': None,
-                    'stopStationIndex': None
-                },{
-                    'id': 23, # bike 
-                    'featureDescription': 'Preprava bicyklov', 
-                    'featureName': 'Preprava bicyklov',
-                    'order': 0,
-                    'reservationType': -1,
-                    'reservationName': None,
-                    'startStationIndex': None,
-                    'stopStationIndex': None
-                },{
-                    'id': 107, # tickets without integrated reservation
-                    'featureDescription': 'SCIC NRT tarifa bez integrovanej rezervácie',
-                    'featureName': 'SCIC NRT tarifa',
-                    'order': 0,
-                    'reservationType': -1,
-                    'reservationName': None,
-                    'startStationIndex': None,
-                    'stopStationIndex': None
-                },{
-                    'id': 101, # stops on demand
-                    'featureDescription': 'Vlak zastavuje len na znamenie, alebo požiadanie',
-                    'featureName': 'Zastavenie na znamenie',
-                    'order': 0,
-                    'reservationType': -1,
-                    'reservationName': None,
-                    'startStationIndex': None,
-                    'stopStationIndex': None
-                }
-            ],
-            'exceptions': [],
-            'carrier': 'Železničná spoločnosť Slovensko, a.s.',
-            'trainDelay': None
-        }
-    },
-    {
-        # ...
-    }
-]
+```
 ```
 
 Arrivals can be returned instead of departures with setting `departure = False`.
@@ -244,6 +143,7 @@ The result has form of
 ```
 
 ### Track train
+*In progress.*
 
 A current train can be tracked for station and delay with
 
@@ -272,6 +172,7 @@ x = zsr.track_train("609")
 ```
 
 ### Connection
+*In progress.*
 
 Search connections between two stations given by their `uicCode`.
 

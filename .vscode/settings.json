@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 1000,
+            "driver": "SQLite",
+            "name": "cache.sqlite",
+            "database": "${workspaceFolder:slovakrailways}/slovakrailways/data/cache.sqlite"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
